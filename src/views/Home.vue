@@ -7,7 +7,9 @@
       <div class="col-12">
         <form @submit.prevent="addBug">
           <div class="form-inline my-4 col-12 d-flex justify-content-center">
-            <input v-model="newBug" type="bug" class="form-control" id placeholder="Bug">
+            <input required v-model="newBug.creator" type="text" class="form-control" placeholder="Your Name">
+            <input required v-model="newBug.title" type="text" class="form-control" placeholder="Bug">
+            <input required v-model="newBug.description" type="text" class="form-control" placeholder="Description">
             <button type="submit" class="btn btn-primary ml-2">Submit</button>
           </div>
         </form>
@@ -28,7 +30,7 @@
     },
     data() {
       return {
-        newBug: ''
+        newBug: { creator: '', title: '', description: '' }
       }
     },
     components: {
@@ -36,7 +38,7 @@
     },
     methods: {
       addBug() {
-        this.$store.dispatch('addBug', { bug: this.newBug })
+        this.$store.dispatch('addBug', this.newBug)
       }
     }
   }
