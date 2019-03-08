@@ -1,18 +1,7 @@
 <template>
   <div class="bugs col-12 d-flex justify-content-center mt-5">
-    <ul v-for="bug in allBugs" :key="bug.id" class="list-group d-flex flex-column row">
-      <li @click="setActiveBug(bug)" class="list-group-item offset-2 col-md-10">
-        <router-link :to="{name: 'details', params:{id: bug._id}}">{{bug.title}}</router-link>
-      </li>
-    </ul>
-  </div>
-</template>
-
-
-<template>
-  <div class="bugs col-12 d-flex justify-content-center mt-5">
-    <table class="table">
-      <thead>
+    <table class="table col-md-10">
+      <thead class="thead-dark">
         <tr>
           <th>Title</th>
           <th>Reported By</th>
@@ -21,10 +10,11 @@
         </tr>
       </thead>
       <tbody v-for="bug in allBugs" :key="bug.id">
-        <tr>
+        <tr @click="setActiveBug(bug); $router.push({name: 'details', params:{id: bug._id}})">
           <td>{{bug.title}}</td>
           <td>{{bug.creator}}</td>
-          <td>{{bug.closed}}</td>
+          <td v-show="!bug.closed">Open</td>
+          <td v-show="bug.closed">Closed</td>
           <td>{{bug.createdAt}}</td>
         </tr>
       </tbody>

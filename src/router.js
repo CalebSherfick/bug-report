@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// @ts-ignore
 import Home from './views/Home.vue'
+// @ts-ignore
 import Details from './views/Details.vue'
 
 Vue.use(Router)
@@ -13,7 +15,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/details/:id',
+      path: '/bugs/:id',
       props: true,
       name: 'details',
       component: Details
