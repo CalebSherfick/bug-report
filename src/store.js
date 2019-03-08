@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 
-const _sandbox = axios.create({
+const _sandbox = Axios.create({
   baseURL: 'https://bcw-sandbox.herokuapp.com/api/contineur',
   timeout: 3000
 })
@@ -31,7 +31,7 @@ export default new Vuex.Store({
     getAllBugs({ commit, dispatch }) {
       _sandbox.get('bugs')
         .then(res => {
-          commit('setBugs', res.data.data)
+          commit('setBugs', res.data.results)
         })
     },
     getActiveBug({ commit, dispatch }) {

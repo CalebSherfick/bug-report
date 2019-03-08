@@ -12,7 +12,7 @@
           </div>
         </form>
       </div>
-      <days></days>
+      <bugs></bugs>
     </div>
   </div>
 </template>
