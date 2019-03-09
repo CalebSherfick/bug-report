@@ -52,10 +52,8 @@ export default new Vuex.Store({
         })
     },
     addComment({ commit, dispatch }, payload) {
-      console.log('before then')
       _sandbox.post(`bugs/${this.state.activeBug._id}/notes`, payload)
         .then(res => {
-          console.log('after then')
           dispatch('getAllComments')
         })
         .catch(err => {

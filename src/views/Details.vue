@@ -25,8 +25,8 @@
         </tbody>
       </table>
     </div>
-    <div class="row">
-      <div class="offset-1 col-10">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-10 pl-0">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Description</h4>
