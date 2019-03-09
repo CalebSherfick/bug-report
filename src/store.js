@@ -36,7 +36,7 @@ export default new Vuex.Store({
         })
     },
     getAllComments({ commit, dispatch }) {
-      _sandbox.get('bugs')
+      _sandbox.get(`bugs/${this.state.activeBug._id}/notes`)
         .then(res => {
           commit('setComments', res.data.results)
         })
@@ -46,6 +46,15 @@ export default new Vuex.Store({
       _sandbox.post('bugs', payload)
         .then(res => {
           dispatch('getAllBugs')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    addComment({ commit, dispatch }, payload) {
+      _sandbox.post(`bugs/${this.state.activeBug._id}/notes`, payload)
+        .then(res => {
+          dispatch('getAllComments')
         })
         .catch(err => {
           console.log(err)

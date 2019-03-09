@@ -1,11 +1,10 @@
 <template>
   <div class="bugComments">
-    v-for="bug in allBugs" :key="bug.id"
-    <div class="offset-1 col-10">
+    <div class="offset-1 col-10" v-for="comment in allComments" :key="comment.id">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Comment By: {{}}</h4>
-          {{activeBug.description}}
+          <h4 class="card-title">Comment By: {{comment.creator}}</h4>
+          <p>{{comment.content}}</p>
         </div>
       </div>
     </div>
@@ -15,6 +14,9 @@
 <script>
   export default {
     name: "bugComents",
+    mounted() {
+      this.$store.dispatch('getAllComments')
+    },
     props: [],
     data() {
       return {};
