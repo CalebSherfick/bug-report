@@ -10,7 +10,10 @@
         </tr>
       </thead>
       <tbody v-for="bug in allBugs" :key="bug.id">
-        <tr @click="setActiveBug(bug); $router.push({name: 'bugDetails', params:{id: bug._id}})">
+        <tr
+          @click="setActiveBug(bug); $router.push({name: 'bugDetails', params:{id: bug._id}})"
+          :class="{'table-success':!bug.closed, 'table-danger': bug.closed}"
+        >
           <td>{{bug.title}}</td>
           <td>{{bug.creator}}</td>
           <td>{{bug.closed? "Closed" : "Open"}}</td>
