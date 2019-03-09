@@ -1,5 +1,95 @@
 <template>
-  <div class="details">
-    <h1>Bug Details</h1>
+  <div class="bugDetails container-fluid">
+    <div class="row">
+      <div class="col">
+        <h1>Bug Details</h1>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table offset-1 col-md-10 table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Title</th>
+            <th>Reported By</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{activeBug.title}}</td>
+            <td>{{activeBug.creator}}</td>
+            <td>{{activeBug.closed? "Closed" : "Open"}}</td>
+            <td>{{activeBug.createdAt | formatTime}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="offset-1 col-10">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Description</h4>
+            {{activeBug.description}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h1 class="title mt-4 col-12 text-center">Comments</h1>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <form @submit.prevent="addComment">
+          <div class="form-inline my-4 col-12 d-flex justify-content-center">
+            <input required v-model="newComment.creator" type="text" class="form-control" placeholder="Your Name">
+            <input required v-model="newComment.content" type="text" class="form-control" placeholder="Comment">
+            <button type="submit" class="btn btn-primary ml-2">Add Comment</button>
+          </div>
+        </form>
+      </div>
+      <bugDetails></bugDetails>
+    </div>
+
   </div>
 </template>
+
+
+<script>
+  import Moment from "moment";
+  // @ is an alias to /src
+  import BugDetails from '@/components/BugDetails.vue'
+
+  export default {
+    name: 'bugDetails',
+    data() {
+      return {
+        newComment: { creator: '', content: '', flagged: 'pending' }
+      }
+    },
+    computed: {
+      activeBug() {
+        return this.$store.state.activeBug;
+      }
+    },
+    filters: {
+      formatTime(date) {
+        return Moment(String(date)).format("MMMM Do YYYY, h:mm:ss a");
+      }
+    },
+    components: {
+      BugDetails
+    },
+    methods: {
+      addComment() {
+        this.$store.dispatch('addComment', this.newComment)
+      }
+    }
+</script>
+
+
+
+<style>
+
+</style>

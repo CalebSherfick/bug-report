@@ -1,6 +1,6 @@
 <template>
   <div class="bugs col-12 d-flex justify-content-center mt-5">
-    <table class="table col-md-10">
+    <table class="table col-md-10 table-hover">
       <thead class="thead-dark">
         <tr>
           <th>Title</th>
