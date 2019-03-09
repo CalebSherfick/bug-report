@@ -10,12 +10,11 @@
         </tr>
       </thead>
       <tbody v-for="bug in allBugs" :key="bug.id">
-        <tr @click="setActiveBug(bug); $router.push({name: 'details', params:{id: bug._id}})">
+        <tr @click="setActiveBug(bug); $router.push({name: 'bugDetails', params:{id: bug._id}})">
           <td>{{bug.title}}</td>
           <td>{{bug.creator}}</td>
-          <td v-show="!bug.closed">Open</td>
-          <td v-show="bug.closed">Closed</td>
-          <td>{{bug.createdAt}}</td>
+          <td>{{bug.closed? "Closed" : "Open"}}</td>
+          <td>{{bug.createdAt | formatTime}}</td>
         </tr>
       </tbody>
     </table>
@@ -23,6 +22,7 @@
 </template>
 
 <script>
+import Moment from "moment";
 export default {
   name: "bugs",
   props: [],
@@ -37,6 +37,11 @@ export default {
   methods: {
     setActiveBug(bug) {
       this.$store.dispatch("setActiveBug", bug);
+    }
+  },
+  filters: {
+    formatTime(date) {
+      return Moment(String(date)).format("MMMM Do YYYY, h:mm:ss a");
     }
   },
   components: {}
