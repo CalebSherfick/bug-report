@@ -49,7 +49,9 @@
           </div>
         </form>
       </div>
-      <bugDetails></bugDetails>
+    </div>
+    <div class="row">
+      <bugComments></bugComments>
     </div>
 
   </div>
@@ -59,7 +61,7 @@
 <script>
   import Moment from "moment";
   // @ is an alias to /src
-  import BugDetails from '@/components/BugDetails.vue'
+  import BugComments from '@/components/BugComments.vue'
 
   export default {
     name: 'bugDetails',
@@ -79,13 +81,14 @@
       }
     },
     components: {
-      BugDetails
+      BugComments
     },
     methods: {
       addComment() {
         this.$store.dispatch('addComment', this.newComment)
       }
     }
+  }
 </script>
 
 

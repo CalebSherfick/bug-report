@@ -13,17 +13,18 @@ export default new Vuex.Store({
   state: {
     bugs: [],
     activeBug: {},
-    bugDetails: []
+    bugDetails: [],
+    comments: []
   },
   mutations: {
     setBugs(state, data) {
       state.bugs = data
     },
+    setComments(state, data) {
+      state.comments = data
+    },
     setActiveBug(state, bug) {
       state.activeBug = bug
-    },
-    bugDetails(state, data) {
-      state.bugDetails = data
     }
   },
   actions: {
@@ -32,6 +33,12 @@ export default new Vuex.Store({
       _sandbox.get('bugs')
         .then(res => {
           commit('setBugs', res.data.results)
+        })
+    },
+    getAllComments({ commit, dispatch }) {
+      _sandbox.get('bugs')
+        .then(res => {
+          commit('setComments', res.data.results)
         })
     },
     //POST
@@ -44,20 +51,10 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    //SET ACTIVE
     setActiveBug({ commit, dispatch }, bug) {
       commit('setActiveBug', bug)
-    },
-    addComment({ commit, dispatch }, payload) {
-      _sandbox.post('bugs/:id/notes', payload)
-        .then(res => {
-          dispatch('getAllBugs')
-        })
-        .catch(err => {
-          console.log(err)
-        })
     }
-
-
 
   }
 })
