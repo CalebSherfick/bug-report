@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr :class="{'table-success':!activeBug.closed, 'table-danger': activeBug.closed}">
             <td>{{activeBug.title}}</td>
             <td>{{activeBug.creator}}</td>
             <td>{{activeBug.closed? "Closed" : "Open"}}</td>
