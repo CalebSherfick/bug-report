@@ -38,7 +38,8 @@
     },
     methods: {
       addBug() {
-        this.$store.dispatch('addBug', this.newBug)
+        this.$store.dispatch('addBug', this.newBug);
+        event.target.reset()
       }
     }
   }

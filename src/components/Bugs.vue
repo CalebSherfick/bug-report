@@ -10,10 +10,8 @@
         </tr>
       </thead>
       <tbody v-for="bug in allBugs" :key="bug.id">
-        <tr
-          @click="setActiveBug(bug); $router.push({name: 'bugDetails', params:{id: bug._id}})"
-          :class="{'table-success':!bug.closed, 'table-danger': bug.closed}"
-        >
+        <tr @click="setActiveBug(bug); $router.push({name: 'bugDetails', params:{id: bug._id}})"
+          :class="{'table-success':!bug.closed, 'table-danger': bug.closed}">
           <td>{{bug.title}}</td>
           <td>{{bug.creator}}</td>
           <td>{{bug.closed? "Closed" : "Open"}}</td>
@@ -25,36 +23,36 @@
 </template>
 
 <script>
-import Moment from "moment";
-export default {
-  name: "bugs",
-  props: [],
-  data() {
-    return {};
-  },
-  computed: {
-    allBugs() {
-      return this.$store.state.bugs;
-    }
-  },
-  methods: {
-    setActiveBug(bug) {
-      this.$store.dispatch("setActiveBug", bug);
-    }
-  },
-  filters: {
-    formatTime(date) {
-      return Moment(String(date)).format("MMMM Do YYYY, h:mm:ss a");
-    }
-  },
-  components: {}
-};
+  import Moment from "moment";
+  export default {
+    name: "bugs",
+    props: [],
+    data() {
+      return {};
+    },
+    computed: {
+      allBugs() {
+        return this.$store.state.bugs;
+      }
+    },
+    methods: {
+      setActiveBug(bug) {
+        this.$store.dispatch("setActiveBug", bug);
+      }
+    },
+    filters: {
+      formatTime(date) {
+        return Moment(String(date)).format("MMMM Do YYYY, h:mm:ss a");
+      }
+    },
+    components: {}
+  };
 </script>
 
 <style>
-li {
-  list-style: none;
-  cursor: pointer;
-  color: black;
-}
+  li {
+    list-style: none;
+    cursor: pointer;
+    color: black;
+  }
 </style>

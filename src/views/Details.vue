@@ -1,12 +1,15 @@
 <template>
   <div class="bugDetails container-fluid">
     <div class="row">
-      <div class="col">
+      <div class="col-md-1">
+        <i class="fas fa-home fa-2x" @click="$router.push({name: 'home'})"></i>
+      </div>
+      <div class="col-md-10">
         <h1>Bug Details</h1>
       </div>
     </div>
     <div class="row">
-      <table class="table offset-1 col-md-10 table-hover">
+      <table class="table offset-1 col-md-10 table">
         <thead class="thead-dark">
           <tr>
             <th>Title</th>
@@ -85,7 +88,8 @@
     },
     methods: {
       addComment() {
-        this.$store.dispatch('addComment', this.newComment)
+        this.$store.dispatch('addComment', this.newComment);
+        event.target.reset()
       }
     }
   }
