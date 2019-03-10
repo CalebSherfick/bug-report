@@ -6,7 +6,7 @@
           <th>Title</th>
           <th>Reported By</th>
           <th>Status</th>
-          <th>Date</th>
+          <th>Date <i class="fas fa-caret-down" @click="sortNewest()"></i></th>
         </tr>
       </thead>
       <tbody v-for="bug in allBugs" :key="bug.id">
@@ -14,7 +14,7 @@
           :class="{'table-success':!bug.closed, 'table-danger': bug.closed}">
           <td>{{bug.title}}</td>
           <td>{{bug.creator}}</td>
-          <td>{{bug.closed? "Closed" : "Open"}}</td>
+          <td><span class="closed-type" @click="bugStatus(bug._id)">{{bug.closed? "Closed" : "Open"}}</span></td>
           <td>{{bug.createdAt | formatTime}}</td>
         </tr>
       </tbody>
@@ -38,6 +38,12 @@
     methods: {
       setActiveBug(bug) {
         this.$store.dispatch("setActiveBug", bug);
+      },
+      sortNewest() {
+        this.$store.dispatch("sortNewest");
+      },
+      bugStatus(id) {
+        this.$store.dispatch("bugStatus", id);
       }
     },
     filters: {
@@ -54,5 +60,9 @@
     list-style: none;
     cursor: pointer;
     color: black;
+  }
+
+  .closed-type:hover {
+    cursor: pointer;
   }
 </style>

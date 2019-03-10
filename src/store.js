@@ -80,6 +80,15 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    bugStatus({ commit, dispatch }, id) {
+      _sandbox.delete(`bugs/${id}`)
+        .then(res => {
+          dispatch('getAllComments')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     //SET ACTIVE
     setActiveBug({ commit, dispatch }, bug) {
       commit('setActiveBug', bug)
