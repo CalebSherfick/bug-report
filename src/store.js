@@ -60,6 +60,15 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    //DELETE
+    deleteComment({ commit, dispatch }, commentID) {
+      _sandbox.delete(`bugs/${this.state.activeBug._id}/notes/${commentID}`)
+      console.log('attempted delete')
+      // dispatch('getAllComments')
+      //   .catch(err => {
+      //     console.log(err)
+      //   })
+    },
     //SET ACTIVE
     setActiveBug({ commit, dispatch }, bug) {
       commit('setActiveBug', bug)

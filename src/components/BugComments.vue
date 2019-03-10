@@ -6,6 +6,7 @@
           <h6 class="card-title">Comment By: {{comment.creator}}</h6>
           <h4>{{comment.content}}</h4>
           <p>{{comment.createdAt | formatTime}}</p>
+          <i class="fas fa-trash-alt" @click="deleteComment(comment._id)"></i>
         </div>
       </div>
     </div>
@@ -33,7 +34,11 @@
         return Moment(String(date)).format("MMMM Do YYYY, h:mm:ss a");
       }
     },
-    methods: {},
+    methods: {
+      deleteComment(commentID) {
+        this.$store.dispatch("deleteComment", commentID);
+      }
+    },
     components: {}
   };
 </script>
