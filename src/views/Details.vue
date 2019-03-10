@@ -43,7 +43,7 @@
       <h1 class="title mt-4 col-12 text-center">Comments</h1>
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12" v-if="!activeBug.closed">
         <form @submit.prevent="addComment">
           <div class="form-inline my-4 col-12 d-flex justify-content-center">
             <input required v-model="newComment.creator" type="text" class="form-control" placeholder="Your Name">
