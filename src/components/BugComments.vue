@@ -3,8 +3,6 @@
     <div class="offset-1 col-10" v-for="comment in allComments" :key="comment.id">
       <div class="card"
         :class="{'pending':comment.flagged == 'pending', 'completed':comment.flagged == 'completed', 'rejected':comment.flagged == 'rejected'}">
-
-        //STILL HAVE TO ADD BACKGROUND COLOR ABOVE
         <div class="card-body">
           <h6 class="card-title">Comment By: {{comment.creator}}</h6>
           <h4>{{comment.content}}</h4>
@@ -17,9 +15,9 @@
               Flag
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a class="dropdown-item" href="#!">Pending</a>
-              <a class="dropdown-item" href="#!">Complete </a>
-              <a class="dropdown-item" href="#!">Reject</a>
+              <a class="dropdown-item" @click="changeFlag(comment._id, 'completed')">Complete </a>
+              <a class="dropdown-item" @click="changeFlag(comment._id, 'rejected')">Reject</a>
+              <a class="dropdown-item" @click="changeFlag(comment._id, 'pending')">Pending</a>
             </div>
           </div>
 
@@ -53,6 +51,9 @@
     methods: {
       deleteComment(commentID) {
         this.$store.dispatch("deleteComment", commentID);
+      },
+      changeFlag(commentID, str) {
+        this.$store.dispatch("changeFlag", { commentID, str });
       }
     },
     components: {}

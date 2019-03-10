@@ -60,6 +60,16 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    //PUT
+    changeFlag({ commit, dispatch }, { commentID, str }) {
+      _sandbox.put(`bugs/${this.state.activeBug._id}/notes/${commentID}`, { "flagged": str })
+        .then(res => {
+          dispatch('getAllComments')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     //DELETE
     deleteComment({ commit, dispatch }, commentID) {
       _sandbox.delete(`bugs/${this.state.activeBug._id}/notes/${commentID}`)
