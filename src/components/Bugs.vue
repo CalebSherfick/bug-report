@@ -4,9 +4,9 @@
       <thead class="thead-dark">
         <tr>
           <th>Title</th>
-          <th>Reported By</th>
-          <th>Status</th>
-          <th>Date <i class="fas fa-caret-down" @click="sortNewest()"></i></th>
+          <th>Reported By <i class="fas fa-filter" @click="nameFilter"></i></th>
+          <th>Status <i class="fas fa-filter" @click="statusFilter"></i></th>
+          <th>Date <i class="fas fa-filter" @click="dateFilter"></i></th>
         </tr>
       </thead>
       <tbody v-for="bug in allBugs" :key="bug.id">
@@ -44,7 +44,21 @@
       },
       bugStatus(id) {
         this.$store.dispatch("bugStatus", id);
+      },
+      statusFilter() {
+        let bugArr = this.$store.state.bugs
+        bugArr.sort((a, b) => a.closed - b.closed)
+      },
+      nameFilter() {
+        let bugArr = this.$store.state.bugs
+        bugArr.sort((a, b) => a.creator.localeCompare(b.creator));
+      },
+      dateFilter() {
+        let bugArr = this.$store.state.bugs
+        bugArr.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
       }
+
+
     },
     filters: {
       formatTime(date) {
@@ -63,6 +77,10 @@
   }
 
   .closed-type:hover {
+    cursor: pointer;
+  }
+
+  .fa-filter:hover {
     cursor: pointer;
   }
 </style>
