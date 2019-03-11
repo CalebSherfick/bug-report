@@ -30,7 +30,7 @@
 <script scoped>
   import Moment from "moment";
   export default {
-    name: "bugComents",
+    name: "bugComments",
     mounted() {
       this.$store.dispatch('getAllComments', this.$route.params.id)
     },

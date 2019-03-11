@@ -9,8 +9,8 @@
           <th>Date <i class="fas fa-caret-down" @click="dateFilter"></i></th>
         </tr>
       </thead>
-      <tbody v-for="bug in allBugs" :key="bug.id">
-        <tr @click="setActiveBug(id); $router.push({name: 'bugDetails', params:{id: bug._id}})"
+      <tbody v-for="bug in allBugs" :key="bug._id">
+        <tr @click="setActiveBug(bug._id); $router.push({name: 'bugDetails', params:{id: bug._id}})"
           :class="{'table-success':!bug.closed, 'table-danger': bug.closed}">
           <td>{{bug.title}}</td>
           <td>{{bug.creator}}</td>

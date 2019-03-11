@@ -54,7 +54,7 @@ export default new Vuex.Store({
     addComment({ commit, dispatch }, payload) {
       _sandbox.post(`bugs/${this.state.activeBug._id}/notes`, payload)
         .then(res => {
-          dispatch('getAllComments')
+          dispatch('getAllComments', `${this.state.activeBug._id}`)
         })
         .catch(err => {
           console.log(err)
@@ -64,7 +64,7 @@ export default new Vuex.Store({
     changeFlag({ commit, dispatch }, { commentID, str }) {
       _sandbox.put(`bugs/${this.state.activeBug._id}/notes/${commentID}`, { "flagged": str })
         .then(res => {
-          dispatch('getAllComments')
+          dispatch('getAllComments', `${this.state.activeBug._id}`)
         })
         .catch(err => {
           console.log(err)
@@ -74,7 +74,7 @@ export default new Vuex.Store({
     deleteComment({ commit, dispatch }, commentID) {
       _sandbox.delete(`bugs/${this.state.activeBug._id}/notes/${commentID}`)
         .then(res => {
-          dispatch('getAllComments')
+          dispatch('getAllComments', `${this.state.activeBug._id}`)
         })
         .catch(err => {
           console.log(err)
@@ -83,7 +83,7 @@ export default new Vuex.Store({
     bugStatus({ commit, dispatch }, id) {
       _sandbox.delete(`bugs/${id}`)
         .then(res => {
-          dispatch('getAllComments')
+          dispatch('getAllComments', `${this.state.activeBug._id}`)
         })
         .catch(err => {
           console.log(err)
