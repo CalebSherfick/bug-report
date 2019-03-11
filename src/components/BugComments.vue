@@ -1,6 +1,6 @@
 <template>
-  <div class="bugComments">
-    <div class="offset-1 col-10" v-for="comment in allComments" :key="comment.id">
+  <div class="row">
+    <div class="col-12" v-for="comment in allComments" :key="comment.id">
       <div class="card"
         :class="{'pending':comment.flagged == 'pending', 'completed':comment.flagged == 'completed', 'rejected':comment.flagged == 'rejected'}">
         <div class="card-body">
@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script>
+<script scoped>
   import Moment from "moment";
   export default {
     name: "bugComents",
@@ -64,10 +64,6 @@
 
 
 <style>
-  .card {
-    min-width: 100rem;
-  }
-
   .pending {
     background-color: #bee5eb;
   }

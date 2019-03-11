@@ -69,7 +69,7 @@
   };
 </script>
 
-<style>
+<style scoped>
   li {
     list-style: none;
     cursor: pointer;
