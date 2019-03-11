@@ -1,7 +1,7 @@
 <template>
   <div class="bugs col-12 d-flex justify-content-center mt-5">
     <table class="table col-md-10 table-hover">
-      <thead class="thead-dark">
+      <thead class="thead">
         <tr>
           <th>Title</th>
           <th>Reported By <i class="fas fa-caret-down" @click="nameFilter"></i></th>
@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody v-for="bug in allBugs" :key="bug.id">
-        <tr @click="setActiveBug(bug); $router.push({name: 'bugDetails', params:{id: bug._id}})"
+        <tr @click="setActiveBug(id); $router.push({name: 'bugDetails', params:{id: bug._id}})"
           :class="{'table-success':!bug.closed, 'table-danger': bug.closed}">
           <td>{{bug.title}}</td>
           <td>{{bug.creator}}</td>
@@ -36,8 +36,8 @@
       }
     },
     methods: {
-      setActiveBug(bug) {
-        this.$store.dispatch("setActiveBug", bug);
+      setActiveBug(id) {
+        this.$store.dispatch("setActiveBug", id);
       },
       sortNewest() {
         this.$store.dispatch("sortNewest");
@@ -82,5 +82,10 @@
 
   .fa-caret-down:hover {
     cursor: pointer;
+  }
+
+  .thead {
+    background-color: #625757;
+    color: #f9f9f9;
   }
 </style>

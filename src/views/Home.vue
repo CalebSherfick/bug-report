@@ -10,7 +10,7 @@
             <input required v-model="newBug.creator" type="text" class="form-control" placeholder="Your Name">
             <input required v-model="newBug.title" type="text" class="form-control" placeholder="Bug">
             <input required v-model="newBug.description" type="text" class="form-control" placeholder="Description">
-            <button type="submit" class="btn btn-primary ml-2">Submit</button>
+            <button type="submit" class="btn ml-2">Submit</button>
           </div>
         </form>
       </div>
@@ -46,5 +46,12 @@
 </script>
 
 <style>
+  .btn {
+    background-color: #625757;
+    color: #f9f9f9;
+  }
 
+  .title {
+    color: #625757;
+  }
 </style>

@@ -12,4 +12,9 @@
     text-align: center;
     color: #2c3e50;
   }
+
+  body {
+
+    background-color: #f9f9f9;
+  }
 </style>

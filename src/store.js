@@ -35,8 +35,8 @@ export default new Vuex.Store({
           commit('setBugs', res.data.results)
         })
     },
-    getAllComments({ commit, dispatch }) {
-      _sandbox.get(`bugs/${this.state.activeBug._id}/notes`)
+    getAllComments({ commit, dispatch }, id) {
+      _sandbox.get(`bugs/${id}/notes`)
         .then(res => {
           commit('setComments', res.data.results)
         })
@@ -90,8 +90,12 @@ export default new Vuex.Store({
         })
     },
     //SET ACTIVE
-    setActiveBug({ commit, dispatch }, bug) {
-      commit('setActiveBug', bug)
+    setActiveBug({ commit, dispatch }, id) {
+      _sandbox.get('bugs/' + id)
+        .then(res => {
+
+          commit('setActiveBug', res.data.results)
+        })
     }
 
   }

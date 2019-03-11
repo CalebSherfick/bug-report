@@ -32,7 +32,7 @@
   export default {
     name: "bugComents",
     mounted() {
-      this.$store.dispatch('getAllComments')
+      this.$store.dispatch('getAllComments', this.$route.params.id)
     },
     props: [],
     data() {

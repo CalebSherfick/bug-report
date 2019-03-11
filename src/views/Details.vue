@@ -28,8 +28,8 @@
         </tbody>
       </table>
     </div>
-    <div class="row">
-      <div class="col">
+    <div class="row justify-content-center ">
+      <div class="col-8">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Description</h4>
@@ -67,6 +67,9 @@
 
   export default {
     name: 'bugDetails',
+    mounted() {
+      this.$store.dispatch('setActiveBug', this.$route.params.id)
+    },
     data() {
       return {
         newComment: { creator: '', content: '', flagged: 'pending' }
