@@ -4,9 +4,9 @@
       <thead class="thead-dark">
         <tr>
           <th>Title</th>
-          <th>Reported By <i class="fas fa-filter" @click="nameFilter"></i></th>
-          <th>Status <i class="fas fa-filter" @click="statusFilter"></i></th>
-          <th>Date <i class="fas fa-filter" @click="dateFilter"></i></th>
+          <th>Reported By <i class="fas fa-caret-down" @click="nameFilter"></i></th>
+          <th>Status <i class="fas fa-caret-down" @click="statusFilter"></i></th>
+          <th>Date <i class="fas fa-caret-down" @click="dateFilter"></i></th>
         </tr>
       </thead>
       <tbody v-for="bug in allBugs" :key="bug.id">
@@ -80,7 +80,7 @@
     cursor: pointer;
   }
 
-  .fa-filter:hover {
+  .fa-caret-down:hover {
     cursor: pointer;
   }
 </style>

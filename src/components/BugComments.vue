@@ -79,4 +79,8 @@
   .rejected {
     background-color: #f5c6cb;
   }
+
+  .fas:hover {
+    cursor: pointer;
+  }
 </style>

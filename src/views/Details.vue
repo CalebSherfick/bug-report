@@ -98,5 +98,7 @@
 
 
 <style>
-
+  .fa-home:hover {
+    cursor: pointer;
+  }
 </style>
