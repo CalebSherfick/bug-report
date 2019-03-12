@@ -2,7 +2,7 @@
   <div class="bugDetails container-fluid">
     <div class="row">
       <div class="col-md-1">
-        <i class="fas fa-home fa-2x" @click="$router.push({name: 'home'})"></i>
+        <i class="fas fa-home fa-2x" @click="leave"></i>
       </div>
       <div class="col-md-10">
         <h1>Bug Details</h1>
@@ -22,7 +22,9 @@
           <tr :class="{'table-success':!activeBug.closed, 'table-danger': activeBug.closed}">
             <td>{{activeBug.title}}</td>
             <td>{{activeBug.creator}}</td>
-            <td>{{activeBug.closed? "Closed" : "Open"}}</td>
+            <td><span class="closed-type"
+                @click="bugStatus(activeBug._id)">{{activeBug.closed? "Closed" : "Open"}}</span>
+            </td>
             <td>{{activeBug.createdAt | formatTime}}</td>
           </tr>
         </tbody>
@@ -68,7 +70,9 @@
   export default {
     name: 'bugDetails',
     mounted() {
-      this.$store.dispatch('setActiveBug', this.$route.params.id)
+      if (!this.activeBug._id) {
+        this.$store.dispatch('setActiveBugParam', this.$route.params.id)
+      }
     },
     data() {
       return {
@@ -92,6 +96,13 @@
       addComment() {
         this.$store.dispatch('addComment', this.newComment);
         event.target.reset()
+      },
+      bugStatus(id) {
+        this.$store.dispatch("bugStatus", id);
+      },
+      leave() {
+        this.$router.push({ name: 'home' })
+        this.$store.dispatch('getAllComments')
       }
     }
   }
@@ -101,6 +112,10 @@
 
 <style scoped>
   .fa-home:hover {
+    cursor: pointer;
+  }
+
+  .closed-type:hover {
     cursor: pointer;
   }
 </style>

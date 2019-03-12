@@ -36,6 +36,7 @@ export default new Vuex.Store({
         })
     },
     getAllComments({ commit, dispatch }, id) {
+      if (!id) return commit('setComments', [])
       _sandbox.get(`bugs/${id}/notes`)
         .then(res => {
           commit('setComments', res.data.results)
@@ -83,19 +84,21 @@ export default new Vuex.Store({
     bugStatus({ commit, dispatch }, id) {
       _sandbox.delete(`bugs/${id}`)
         .then(res => {
-          dispatch('getAllComments', `${this.state.activeBug._id}`)
+          dispatch('setActiveBugParam', id)
         })
         .catch(err => {
           console.log(err)
         })
     },
     //SET ACTIVE
-    setActiveBug({ commit, dispatch }, id) {
+    setActiveBugParam({ commit, dispatch }, id) {
       _sandbox.get('bugs/' + id)
         .then(res => {
-
           commit('setActiveBug', res.data.results)
         })
+    },
+    setActiveBug({ commit, dispatch }, bug) {
+      commit('setActiveBug', bug)
     }
 
   }
