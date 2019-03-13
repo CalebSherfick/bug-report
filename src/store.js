@@ -35,9 +35,9 @@ export default new Vuex.Store({
           commit('setBugs', res.data.results)
         })
     },
-    getAllComments({ commit, dispatch }, id) {
-      if (!id) return commit('setComments', [])
-      _sandbox.get(`bugs/${id}/notes`)
+    getAllComments({ commit, dispatch }, payload) {
+      if (!payload) return commit('setComments', [])
+      _sandbox.get(payload.endpoint)
         .then(res => {
           commit('setComments', res.data.results)
         })
@@ -53,9 +53,9 @@ export default new Vuex.Store({
         })
     },
     addComment({ commit, dispatch }, payload) {
-      _sandbox.post(`bugs/${this.state.activeBug._id}/notes`, payload)
+      _sandbox.post(payload.endpoint, payload.data)
         .then(res => {
-          dispatch('getAllComments', `${this.state.activeBug._id}`)
+          dispatch('getAllComments', payload)
         })
         .catch(err => {
           console.log(err)
@@ -72,10 +72,10 @@ export default new Vuex.Store({
         })
     },
     //DELETE
-    deleteComment({ commit, dispatch }, commentID) {
-      _sandbox.delete(`bugs/${this.state.activeBug._id}/notes/${commentID}`)
+    deleteComment({ commit, dispatch }, payload) {
+      _sandbox.delete(payload.endpoint + payload.data)
         .then(res => {
-          dispatch('getAllComments', `${this.state.activeBug._id}`)
+          dispatch('getAllComments', payload)
         })
         .catch(err => {
           console.log(err)

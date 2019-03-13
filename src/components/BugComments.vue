@@ -32,7 +32,11 @@
   export default {
     name: "bugComments",
     mounted() {
-      this.$store.dispatch('getAllComments', this.$route.params.id)
+      let bugId = this.$route.params.id
+
+      this.$store.dispatch('getAllComments', {
+        endpoint: `bugs/${bugId}/notes`
+      })
     },
     props: [],
     data() {
@@ -50,7 +54,12 @@
     },
     methods: {
       deleteComment(commentID) {
-        this.$store.dispatch("deleteComment", commentID);
+        let bugId = this.$route.params.id
+        this.$store.dispatch("deleteComment", {
+          endpoint: `bugs/${bugId}/notes/`,
+          data: commentID
+        });
+        console.log(bugId)
       },
       changeFlag(commentID, str) {
         this.$store.dispatch("changeFlag", { commentID, str });

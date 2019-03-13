@@ -94,7 +94,13 @@
     },
     methods: {
       addComment() {
-        this.$store.dispatch('addComment', this.newComment);
+        let bugId = this.$route.params.id
+        let newComment = this.newComment
+        this.$store.dispatch('addComment', {
+          endpoint: `bugs/${bugId}/notes`,
+          resource: 'comments',
+          data: newComment
+        });
         event.target.reset()
       },
       bugStatus(id) {
