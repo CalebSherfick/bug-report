@@ -62,7 +62,11 @@
         console.log(bugId)
       },
       changeFlag(commentID, str) {
-        this.$store.dispatch("changeFlag", { commentID, str });
+        let bugId = this.$route.params.id
+        this.$store.dispatch("changeFlag", {
+          endpoint: `bugs/${bugId}/notes/`,
+          data: { commentID, str }
+        })
       }
     },
     components: {}

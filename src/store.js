@@ -62,10 +62,10 @@ export default new Vuex.Store({
         })
     },
     //PUT
-    changeFlag({ commit, dispatch }, { commentID, str }) {
-      _sandbox.put(`bugs/${this.state.activeBug._id}/notes/${commentID}`, { "flagged": str })
+    changeFlag({ commit, dispatch }, payload) {
+      _sandbox.put(payload.endpoint + payload.data.commentID, { "flagged": payload.data.str })
         .then(res => {
-          dispatch('getAllComments', `${this.state.activeBug._id}`)
+          dispatch('getAllComments', payload)
         })
         .catch(err => {
           console.log(err)
