@@ -22,9 +22,7 @@
           <tr :class="{'table-success':!activeBug.closed, 'table-danger': activeBug.closed}">
             <td>{{activeBug.title}}</td>
             <td>{{activeBug.creator}}</td>
-            <td><span class="closed-type"
-                @click="bugStatus(activeBug._id)">{{activeBug.closed? "Closed" : "Open"}}</span>
-            </td>
+            <td>{{activeBug.closed? "Closed" : "Open"}}</td>
             <td>{{activeBug.createdAt | formatTime}}</td>
           </tr>
         </tbody>
@@ -35,7 +33,11 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Description</h4>
-            {{activeBug.description}}
+            <p>
+              {{activeBug.description}}
+            </p>
+            <button class="closed-type"
+              @click="bugStatus(activeBug._id)">{{activeBug.closed? "Open Case" : "Close Case"}}</button>
           </div>
         </div>
       </div>
