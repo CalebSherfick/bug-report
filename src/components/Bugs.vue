@@ -73,6 +73,7 @@
     color: black;
   }
 
+  /* STYLE TO MAKE STAND OUT BETTER */
   .fa-caret-down:hover {
     cursor: pointer;
   }

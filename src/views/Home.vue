@@ -46,6 +46,8 @@
 </script>
 
 <style>
+  /* STYLE TO MAKE STAND OUT BETTER */
+
   .btn {
     background-color: #625757;
     color: #f9f9f9;
